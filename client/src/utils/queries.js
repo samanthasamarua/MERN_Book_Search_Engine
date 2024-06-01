@@ -1,62 +1,53 @@
 import { gql } from '@apollo/client';
 
-// Define GraphQL queries
-const GET_USER = gql`
-  query GetUser($userId: ID!) {
-    user(userId: $userId) {
-      _id
-      username
-      email
-      bookCount
-      savedBooks {
-        bookId
-        authors
-        description
-        title
-        image
-        link
-      }
+export const QUERY_SINGLE_USER = gql`
+    query getUser{
+        user {
+            username
+            email
+            savedBooks{
+                title
+                bookId
+                description
+                authors
+                link
+                image
+            }
+        }
     }
-  }
 `;
 
-const GET_USERS = gql`
-  query GetUsers {
-    users {
-      _id
-      username
-      email
-      bookCount
-      savedBooks {
-        bookId
-        authors
-        description
-        title
-        image
-        link
-      }
+export const QUERY_USERS = gql`
+    query getUsers{
+        users {
+            username
+            email
+            savedBooks{
+                title
+                bookId
+                description
+                authors
+                link
+                image
+            }
+        }
     }
-  }
 `;
 
-const GET_ME = gql`
-  query GetMe {
-    me {
-      _id
-      username
-      email
-      bookCount
-      savedBooks {
-        bookId
-        authors
-        description
-        title
-        image
-        link
-      }
+export const QUERY_ME = gql`
+    query me{
+        me {
+            _id
+            username
+            email
+            savedBooks{
+                title
+                bookId
+                description
+                authors
+                link
+                image
+            }
+        }
     }
-  }
-`;
-
-// Export the queries
-export { GET_USER, GET_USERS, GET_ME };
+`
