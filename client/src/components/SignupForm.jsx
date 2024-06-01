@@ -39,7 +39,17 @@ const SignupForm = () => {
 
       Auth.login(data.addUser.token);
     } catch (err) {
-      console.error(err);
+      console.error("Error details:", err);
+      if (err.graphQLErrors) {
+        err.graphQLErrors.forEach(({ message, locations, path }) =>
+          console.error(`GraphQL error: Message: ${message}, Location: ${locations}, Path: ${path}`)
+        );
+      }
+
+      if (err.networkError) {
+        console.error(`Network error: ${err.networkError}`);
+      }
+
       setShowAlert(true);
     }
 
